@@ -7,7 +7,6 @@ package cn.wxingzou.groupbooking.result;
  **/
 public interface FailReason<R> {
 
-
     R getReason();
 
 }

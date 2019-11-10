@@ -1,54 +1,19 @@
 package cn.wxingzou.groupbooking.allocation;
 
-import cn.wxingzou.groupbooking.base.GroupBookingCondition;
-
-import java.util.StringJoiner;
+import cn.wxingzou.groupbooking.base.Condition;
 
 /**
  * @author wuxiaolin
  * @version 1.0
- * @date 2019/11/8 17:10
- **/
-public class ConditionChainContext {
+ * @date 2019/11/9 12:25
+ */
+public interface ConditionChainContext {
 
-    private GroupBookingCondition first;
+    void addCondition(Condition condition);
 
-    public String getConditionChainDescription() {
-        check();
-        GroupBookingCondition condition = first;
-        StringJoiner descriptionJoiner = new StringJoiner("==>");
-        do {
-            descriptionJoiner.add(condition.getDescription());
-        } while ((condition = condition.getNextCondition()) != null);
-        return descriptionJoiner.toString();
-    }
+    int getConditionSize();
 
+    String getConditionChainDescription();
 
-    public int getConditionSize() {
-        check();
-        GroupBookingCondition condition = first;
-        int conditionSize = 1;
-        while (true) {
-            if (null != condition.getNextCondition()) {
-                conditionSize++;
-            } else {
-                break;
-            }
-        }
-        return conditionSize;
-    }
-
-    public void check() {
-        if (first == null) {
-            throw new IllegalStateException("first condition cannot be null");
-        }
-    }
-
-    public GroupBookingCondition getFirst() {
-        return first;
-    }
-
-    public void setFirst(GroupBookingCondition first) {
-        this.first = first;
-    }
+    void reset();
 }
