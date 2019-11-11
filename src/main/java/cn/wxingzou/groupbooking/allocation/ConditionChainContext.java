@@ -9,11 +9,13 @@ import cn.wxingzou.groupbooking.base.Condition;
  */
 public interface ConditionChainContext {
 
+    String getType();
+
     void addCondition(Condition condition);
 
     int getConditionSize();
 
-    String getConditionChainDescription();
+    String getConditionChainStr();
 
-    void reset();
+    String getConditionChainDescription();
 }

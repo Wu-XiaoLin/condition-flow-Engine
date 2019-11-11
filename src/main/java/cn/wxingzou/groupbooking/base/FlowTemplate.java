@@ -1,15 +1,18 @@
 package cn.wxingzou.groupbooking.base;
 
-import java.util.concurrent.Future;
+import java.util.List;
 
 /**
- *
  * @author wuxiaolin
  * @version 1.0
  * @date 2019/11/8 16:25
  **/
-public interface FlowTemplate  {
+public interface FlowTemplate {
 
+    void execute(String type);
 
-    void execute();
+    int getConditionContextSize();
+
+    void refresh(List<? extends ConditionConfig> conditionConfigs);
+
 }

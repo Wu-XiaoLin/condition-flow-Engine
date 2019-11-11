@@ -1,6 +1,7 @@
 package cn.wxingzou.groupbooking.allocation;
 
 import cn.wxingzou.groupbooking.base.Condition;
+import cn.wxingzou.groupbooking.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @version 1.0
  * @date 2019/11/9 13:20
  */
-public abstract class AbstractConditionChainContext implements ConditionChainContext {
+public class ConditionChainContextImpl implements ConditionChainContext {
 
 
     private ReadWriteLock lock = new ReentrantReadWriteLock();
@@ -26,8 +27,21 @@ public abstract class AbstractConditionChainContext implements ConditionChainCon
 
     private int conditionSize;
 
+    private String type;
+
+    private String description;
+
     @Override
-    public String getConditionChainDescription() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String getConditionChainStr() {
         check();
         StringJoiner descriptionJoiner = new StringJoiner("==>");
         try {
@@ -56,6 +70,7 @@ public abstract class AbstractConditionChainContext implements ConditionChainCon
 
     @Override
     public void addCondition(Condition condition) {
+        Assert.notnull(condition, "condition");
         try {
             writeLock.lock();
             conditionList.add(condition);
@@ -66,13 +81,11 @@ public abstract class AbstractConditionChainContext implements ConditionChainCon
     }
 
     @Override
-    public void reset() {
-        try {
-            writeLock.lock();
-            conditionList.clear();
-            conditionSize = 0;
-        } finally {
-            writeLock.unlock();
-        }
+    public String getConditionChainDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
