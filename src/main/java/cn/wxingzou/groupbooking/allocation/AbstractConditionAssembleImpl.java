@@ -5,7 +5,6 @@ import cn.wxingzou.groupbooking.util.Assert;
 import cn.wxingzou.groupbooking.util.ConditionChainContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,19 +15,18 @@ import java.util.concurrent.ConcurrentMap;
  * @version 1.0
  * @date 2019/11/8 17:07
  **/
-public class ConditionAssembleImpl implements ConditionAssemble {
+public abstract class AbstractConditionAssembleImpl implements ConditionAssemble, ConditionChainEngineConfig {
 
-    private static Logger logger = LoggerFactory.getLogger(ConditionAssembleImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(AbstractConditionAssembleImpl.class);
 
-    private ConcurrentMap<String, ConditionChainContext> concurrentMap = new ConcurrentHashMap();
-
-    private ApplicationContext context;
 
     @Override
-    public boolean createConditionChain(List<? extends ConditionConfig> conditionConfigs) {
+    public ConcurrentMap<String, ConditionChainContext> createConditionChain() {
+        List<ConditionConfig> conditionConfigs = getConditionConfigs();
         Assert.notnull(conditionConfigs, "conditionConfigs");
 
-        conditionConfigs.stream().map(c -> ConditionChainContextUtil.configCovertToContext(context, c))
+        ConcurrentMap<String, ConditionChainContext> concurrentMap = new ConcurrentHashMap();
+        conditionConfigs.stream().map(c -> ConditionChainContextUtil.configCovertToContext(getBeanFactory(), c))
                 .filter(c -> !concurrentMap.containsKey(c.getType()))
                 .forEach(ctx -> concurrentMap.put(ctx.getType(), ctx));
 
@@ -36,11 +34,7 @@ public class ConditionAssembleImpl implements ConditionAssemble {
             logger.warn("conditionConfig size[{}] > parse size[{}] , There may be duplicate definitions \n conditionConfig: [{}]", conditionConfigs.size(), concurrentMap.size(), conditionConfigs);
         }
 
-        return true;
+        return concurrentMap;
     }
 
-    @Override
-    public int conutConditionChainSize() {
-        return concurrentMap.size();
-    }
 }

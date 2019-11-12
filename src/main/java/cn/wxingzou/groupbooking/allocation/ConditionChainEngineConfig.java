@@ -4,15 +4,16 @@ import cn.wxingzou.groupbooking.base.ConditionConfig;
 import org.springframework.beans.factory.BeanFactory;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author wuxiaolin
  * @version 1.0
- * @date 2019/11/8 16:56
+ * @date 2019/11/12 17:48
  **/
-public interface ConditionAssemble {
+public interface ConditionChainEngineConfig {
 
-    ConcurrentMap<String, ConditionChainContext> createConditionChain();
+   List<ConditionConfig> getConditionConfigs();
+
+   BeanFactory getBeanFactory();
 
 }

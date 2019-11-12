@@ -6,7 +6,9 @@ import cn.wxingzou.groupbooking.allocation.ConditionChainContext;
 import cn.wxingzou.groupbooking.allocation.ConditionChainContextImpl;
 import cn.wxingzou.groupbooking.base.Condition;
 import cn.wxingzou.groupbooking.base.ConditionConfig;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @author wuxiaolin
@@ -16,7 +18,7 @@ import org.springframework.context.ApplicationContext;
 public class ConditionChainContextUtil {
 
 
-    public static ConditionChainContext configCovertToContext(ApplicationContext applicationContext, ConditionConfig conditionConfig) {
+    public static ConditionChainContext configCovertToContext(BeanFactory beanFactory, ConditionConfig conditionConfig) {
         Assert.notnull(conditionConfig, "conditionConfig");
         Assert.notEmpty(conditionConfig.getType(), "conditionConfig.type");
         Assert.notEmpty(conditionConfig.getDescription(), "conditionConfig.description");
@@ -30,7 +32,7 @@ public class ConditionChainContextUtil {
         context.setType(conditionConfig.getType());
         context.setDescription(conditionConfig.getDescription());
         chainDefinitionArray.stream().map(c -> String.valueOf(c))
-                .forEach(c -> context.addCondition(applicationContext.getBean(c, Condition.class)));
+                .forEach(c -> context.addCondition(beanFactory.getBean(c, Condition.class)));
         Assert.notTrue(context.getConditionSize() <= 0, " ConditionChainContext has zero condition , parse error OR not obtained condition bean !");
         return context;
     }

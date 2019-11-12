@@ -15,6 +15,8 @@ public interface ConditionChainContext {
 
     int getConditionSize();
 
+    Condition getCondition(int index);
+
     String getConditionChainStr();
 
     String getConditionChainDescription();

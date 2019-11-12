@@ -62,6 +62,11 @@ public class ConditionChainContextImpl implements ConditionChainContext {
         return conditionSize;
     }
 
+    @Override
+    public Condition getCondition(int index) {
+        return conditionList.get(index);
+    }
+
     public void check() {
         if (conditionList.isEmpty()) {
             throw new IllegalStateException("conditions cannot be null");

@@ -1,7 +1,5 @@
 package cn.wxingzou.groupbooking.base;
 
-import java.util.List;
-
 /**
  * @author wuxiaolin
  * @version 1.0
@@ -10,9 +8,5 @@ import java.util.List;
 public interface FlowTemplate {
 
     void execute(String type);
-
-    int getConditionContextSize();
-
-    void refresh(List<? extends ConditionConfig> conditionConfigs);
 
 }
