@@ -1,6 +1,6 @@
-package cn.wxingzou.groupbooking.allocation;
+package cn.wxingzou.flowengine.base;
 
-import cn.wxingzou.groupbooking.base.Condition;
+import java.util.Iterator;
 
 /**
  * @author wuxiaolin
@@ -16,6 +16,8 @@ public interface ConditionChainContext {
     int getConditionSize();
 
     Condition getCondition(int index);
+
+    Iterator<Condition> iterator();
 
     String getConditionChainStr();
 

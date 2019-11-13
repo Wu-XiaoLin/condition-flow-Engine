@@ -1,6 +1,4 @@
-package cn.wxingzou.groupbooking.base;
-
-import cn.wxingzou.groupbooking.result.Result;
+package cn.wxingzou.flowengine.result;
 
 /**
  * @author wuxiaolin

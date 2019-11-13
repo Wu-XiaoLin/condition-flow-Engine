@@ -1,4 +1,4 @@
-package cn.wxingzou.groupbooking.result;
+package cn.wxingzou.flowengine.result;
 
 /**
  * @author wuxiaolin
@@ -12,6 +12,5 @@ public interface Result<S, F> {
     S getResult();
 
     FailReason<F> getFailReason();
-
 
 }

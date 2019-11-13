@@ -1,4 +1,4 @@
-package cn.wxingzou.groupbooking.util;
+package cn.wxingzou.flowengine.util;
 
 import java.util.Objects;
 

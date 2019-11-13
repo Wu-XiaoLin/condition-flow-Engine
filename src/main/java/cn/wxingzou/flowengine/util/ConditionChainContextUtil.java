@@ -1,14 +1,12 @@
-package cn.wxingzou.groupbooking.util;
+package cn.wxingzou.flowengine.util;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
-import cn.wxingzou.groupbooking.allocation.ConditionChainContext;
-import cn.wxingzou.groupbooking.allocation.ConditionChainContextImpl;
-import cn.wxingzou.groupbooking.base.Condition;
-import cn.wxingzou.groupbooking.base.ConditionConfig;
+import cn.wxingzou.flowengine.base.ConditionChainContext;
+import cn.wxingzou.flowengine.base.ConditionChainContextImpl;
+import cn.wxingzou.flowengine.base.Condition;
+import cn.wxingzou.flowengine.config.ConditionConfig;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 /**
  * @author wuxiaolin

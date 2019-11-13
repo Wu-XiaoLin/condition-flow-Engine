@@ -1,4 +1,4 @@
-package cn.wxingzou.groupbooking.base;
+package cn.wxingzou.flowengine.config;
 
 /**
  * @author wuxiaolin
@@ -13,7 +13,7 @@ public class ConditionConfig {
      */
     private String type;
     /**
-     * json数组表示,每个元素为serviceName
+     * json数组表示,每个元素为serviceName`
      * ["condition1","condition2"]
      */
     private String chainDefinition;
@@ -23,6 +23,14 @@ public class ConditionConfig {
      */
     private String description;
 
+    public ConditionConfig() {
+    }
+
+    public ConditionConfig(String type, String chainDefinition, String description) {
+        this.type = type;
+        this.chainDefinition = chainDefinition;
+        this.description = description;
+    }
 
     public String getType() {
         return type;

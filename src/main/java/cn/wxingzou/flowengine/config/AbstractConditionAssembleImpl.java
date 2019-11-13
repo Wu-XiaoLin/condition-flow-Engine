@@ -1,8 +1,8 @@
-package cn.wxingzou.groupbooking.allocation;
+package cn.wxingzou.flowengine.config;
 
-import cn.wxingzou.groupbooking.base.ConditionConfig;
-import cn.wxingzou.groupbooking.util.Assert;
-import cn.wxingzou.groupbooking.util.ConditionChainContextUtil;
+import cn.wxingzou.flowengine.base.ConditionChainContext;
+import cn.wxingzou.flowengine.util.Assert;
+import cn.wxingzou.flowengine.util.ConditionChainContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,8 +24,7 @@ public abstract class AbstractConditionAssembleImpl implements ConditionAssemble
     public ConcurrentMap<String, ConditionChainContext> createConditionChain() {
         List<ConditionConfig> conditionConfigs = getConditionConfigs();
         Assert.notnull(conditionConfigs, "conditionConfigs");
-
-        ConcurrentMap<String, ConditionChainContext> concurrentMap = new ConcurrentHashMap();
+        ConcurrentMap<String, ConditionChainContext> concurrentMap = new ConcurrentHashMap((int) (conditionConfigs.size() / 0.75F));
         conditionConfigs.stream().map(c -> ConditionChainContextUtil.configCovertToContext(getBeanFactory(), c))
                 .filter(c -> !concurrentMap.containsKey(c.getType()))
                 .forEach(ctx -> concurrentMap.put(ctx.getType(), ctx));

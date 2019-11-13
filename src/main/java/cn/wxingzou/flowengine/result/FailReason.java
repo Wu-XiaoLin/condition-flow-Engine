@@ -1,4 +1,4 @@
-package cn.wxingzou.groupbooking.result;
+package cn.wxingzou.flowengine.result;
 
 /**
  * @author wuxiaolin

@@ -1,9 +1,7 @@
-package cn.wxingzou.groupbooking.allocation;
+package cn.wxingzou.flowengine.config;
 
-import cn.wxingzou.groupbooking.base.ConditionConfig;
-import org.springframework.beans.factory.BeanFactory;
+import cn.wxingzou.flowengine.base.ConditionChainContext;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 /**

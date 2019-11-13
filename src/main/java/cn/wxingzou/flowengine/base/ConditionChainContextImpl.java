@@ -1,14 +1,14 @@
-package cn.wxingzou.groupbooking.allocation;
+package cn.wxingzou.flowengine.base;
 
-import cn.wxingzou.groupbooking.base.Condition;
-import cn.wxingzou.groupbooking.util.Assert;
+import cn.wxingzou.flowengine.util.Assert;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.stream.Collectors;
 
 /**
  * @author wuxiaolin
@@ -43,18 +43,13 @@ public class ConditionChainContextImpl implements ConditionChainContext {
     @Override
     public String getConditionChainStr() {
         check();
-        StringJoiner descriptionJoiner = new StringJoiner("==>");
         try {
             readLock.lock();
-            int inx = 0;
-            Condition condition = conditionList.get(inx);
-            do {
-                descriptionJoiner.add(condition.getDescription());
-            } while ((condition = conditionList.get(++inx)) != null);
+            String collect = conditionList.stream().map(c -> c.getDescription()).collect(Collectors.joining(" ==> "));
+            return collect;
         } finally {
             readLock.unlock();
         }
-        return descriptionJoiner.toString();
     }
 
     @Override
@@ -65,6 +60,12 @@ public class ConditionChainContextImpl implements ConditionChainContext {
     @Override
     public Condition getCondition(int index) {
         return conditionList.get(index);
+    }
+
+    @Override
+    public Iterator<Condition> iterator() {
+        check();
+        return conditionList.iterator();
     }
 
     public void check() {
