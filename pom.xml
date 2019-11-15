@@ -10,6 +10,28 @@
     <description>条件流引擎</description>
 
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/Wu-XiaoLin/condition-flow-Engine</url>
+        <connection>https://github.com/Wu-XiaoLin/condition-flow-Engine.git</connection>
+        <developerConnection>https://github.com/Wu-XiaoLin/condition-flow-Engine</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Wu XiaoLin</name>
+            <email>wxl19980803@gmail.com</email>
+            <url>http://blog.wxingzou.cn</url>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
