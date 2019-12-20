@@ -35,6 +35,7 @@ public class ConditionChainContextCovertUtil {
             Assert.notTrue(chainDefinitionArray.isEmpty(), "conditionConfig.chainDefinition cannot be empty");
             ConditionChainContextImpl context = new ConditionChainContextImpl();
             context.setType(conditionConfig.getType());
+            context.setProperties(conditionConfig.getProperties());
             context.setDescription(conditionConfig.getDescription());
             chainDefinitionArray.stream().map(String::valueOf)
                     .forEach(c -> context.addCondition(beanFactory.getBean(c, Condition.class)));
