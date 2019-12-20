@@ -5,7 +5,7 @@
 
     <groupId>cn.wxingzou.conditionflowengine</groupId>
     <artifactId>condition-flow-engine</artifactId>
-    <version>2.0-SNAPSHOOT</version>
+    <version>2.0-RELEASE</version>
     <name>condition-flow-Engine</name>
     <description>条件流引擎</description>
 
