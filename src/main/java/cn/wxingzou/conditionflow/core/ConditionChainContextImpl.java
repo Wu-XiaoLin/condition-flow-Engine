@@ -2,9 +2,7 @@ package cn.wxingzou.conditionflow.core;
 
 import cn.wxingzou.conditionflow.util.Assert;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -18,10 +16,18 @@ public class ConditionChainContextImpl implements ConditionChainContext {
      * 条件存放
      */
     private List<Condition> conditionList = new ArrayList<>();
-
+    /**
+     * 条件链类型 or 名称
+     */
     private String type;
-
+    /**
+     * 简介
+     */
     private String description;
+    /**
+     * 条件链对应全局参数 <b>只读</b>
+     */
+    private Map<String, Object> properties;
 
     @Override
     public String getType() {
@@ -68,6 +74,16 @@ public class ConditionChainContextImpl implements ConditionChainContext {
     @Override
     public String getConditionChainDescription() {
         return description;
+    }
+
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Map<String, Object> properties) {
+        //次数将map设置为只读的
+        this.properties = properties == null ? Collections.EMPTY_MAP : Collections.unmodifiableMap(properties);
     }
 
     public void setDescription(String description) {

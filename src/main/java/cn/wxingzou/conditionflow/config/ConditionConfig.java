@@ -1,5 +1,7 @@
 package cn.wxingzou.conditionflow.config;
 
+import java.util.Map;
+
 /**
  * 条件链配置
  *
@@ -21,6 +23,11 @@ public class ConditionConfig {
     private String chainDefinition;
 
     /**
+     * 条件链需要的所有参数
+     */
+    private Map<String, Object> properties;
+
+    /**
      * 描述
      */
     private String description;
@@ -31,6 +38,13 @@ public class ConditionConfig {
     public ConditionConfig(String type, String chainDefinition, String description) {
         this.type = type;
         this.chainDefinition = chainDefinition;
+        this.description = description;
+    }
+
+    public ConditionConfig(String type, String chainDefinition, Map<String, Object> properties, String description) {
+        this.type = type;
+        this.chainDefinition = chainDefinition;
+        this.properties = properties;
         this.description = description;
     }
 
@@ -58,11 +72,20 @@ public class ConditionConfig {
         this.description = description;
     }
 
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Map<String, Object> properties) {
+        this.properties = properties;
+    }
+
     @Override
     public String toString() {
         return "ConditionConfig{" +
                 "type='" + type + '\'' +
                 ", chainDefinition='" + chainDefinition + '\'' +
+                ", properties=" + properties +
                 ", description='" + description + '\'' +
                 '}';
     }

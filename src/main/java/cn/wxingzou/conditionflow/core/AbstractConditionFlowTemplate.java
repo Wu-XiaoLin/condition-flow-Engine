@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 抽象实现条件流模板
@@ -62,11 +63,12 @@ public abstract class AbstractConditionFlowTemplate<P, S, F> extends ConfigableC
         Result<S, F> result = null;
         // 每个条件的入参，首个条件入参由用户传入，后面的条件入参取决于上一个条件的返回结果中的getResult()
         Object successResult = param;
-
+        //条件链对应的所有参数
+        Map<String, Object> chainGlobalParam = conditionChainCtx.getProperties();
         Condition curr;
         while (iterator.hasNext()) {
             curr = iterator.next();
-            result = curr.check(successResult);
+            result = curr.check(chainGlobalParam, successResult);
             if (logger.isDebugEnabled()) {
                 logger.debug("[{}] 条件链中的 [{}] 条件执行完成, 是否成功：[{}], 返回结果为：[{}]", type, curr.getDescription(), result.isSuccess(), result);
             }
