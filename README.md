@@ -52,10 +52,9 @@
 - 条件流模板：管理条件链，提供方法调用调用条件链。
 
 
-
 为大家提供 springboot demo 方便大家快速上手，<a target="_blank" href="https://gitee.com/Mwuxiaolin/condition-flow-engine-demo">DEMO</a>
 
-
+wiki上线啦，<a href="https://github.com/Wu-XiaoLin/condition-flow-Engine/wiki">戳我</a>教你详细使用步骤。
 
 ### 使用场景
 
